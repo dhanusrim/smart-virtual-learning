@@ -2,6 +2,14 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, User } from 'lucide-react';
+import { API_URL } from '../config';
+
+// Example API call
+const response = await fetch(`${API_URL}/api/auth/login`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+});
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
