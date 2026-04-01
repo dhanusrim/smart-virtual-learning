@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // adjust in prod to your URL
+  baseURL: `${API_URL}/api`, // adjust in prod to your URL
 });
 
 // Request interceptor to add token
