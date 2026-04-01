@@ -13,8 +13,35 @@ connectDB();
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// Dynamic CORS configuration
+const allowedOrigins = process.env.NODE_ENV === 'production' 
+  ? [process.env.FRONTEND_URL, 'https://smart-virtual-learning.vercel.app'] // Add specific Vercel URL
+  : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:4173', 'http://localhost:5173'];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // In production, allow if origin matches FRONTEND_URL or if allowedOrigins includes it
+    if (process.env.NODE_ENV === 'production') {
+      if (!process.env.FRONTEND_URL || origin === process.env.FRONTEND_URL || origin.includes('vercel.app')) {
+         return callback(null, true);
+      }
+      return callback(new Error('Not allowed by CORS'));
+    }
+    
+    // In development allow predefined origins
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    
+    // Fallback allowing all in dev if no specific match
+    callback(null, true);
+  },
+  credentials: true
+}));
+
 app.use(express.json());
 // Serve uploaded content statically
 app.use('/uploads', express.static('uploads'));
@@ -51,23 +78,3 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
 
-// In server.js, update your CORS configuration
-const cors = require('cors');
-
-// Dynamic CORS configuration
-const allowedOrigins = process.env.NODE_ENV === 'production' 
-  ? [process.env.FRONTEND_URL]  // Your Vercel URL will go here
-  : ['http://localhost:3000', 'http://localhost:3001'];
-
-app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
