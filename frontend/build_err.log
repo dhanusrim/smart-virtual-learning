@@ -1,0 +1,29 @@
+
+> smart-virtual-learning-frontend@0.0.0 build
+> vite build
+
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 2354 modules transformed.
+[31mx[39m Build failed in 7.09s
+[31merror during build:
+[31m../../../../../../../C:/Users/DHANUSRI M/Desktop/smt/smart-virtual-learning/frontend/src/App.jsx (20:7): "default" is not exported by "../../../../../../../C:/Users/DHANUSRI M/Desktop/smt/smart-virtual-learning/frontend/src/pages/Notifications/Notifications.jsx", imported by "../../../../../../../C:/Users/DHANUSRI M/Desktop/smt/smart-virtual-learning/frontend/src/App.jsx".[31m
+file: [36mC:/Users/DHANUSRI M/Desktop/smt/smart-virtual-learning/frontend/src/App.jsx:20:7[31m
+[33m
+18: import Progress from './pages/Progress/Progress';
+19: import Reports from './pages/Reports/Reports';
+20: import Notifications from './pages/Notifications/Notifications';
+           ^
+21: 
+22: // Main Layout Wrapper
+[31m
+    at getRollupError (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/parseAst.js:402:41)
+    at error (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/parseAst.js:398:42)
+    at Module.error (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/node-entry.js:17040:16)
+    at Module.traceVariable (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/node-entry.js:17452:29)
+    at ModuleScope.findVariable (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/node-entry.js:15070:39)
+    at ReturnValueScope.findVariable (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/node-entry.js:5673:38)
+    at FunctionBodyScope.findVariable (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/node-entry.js:5673:38)
+    at Identifier.bind (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/node-entry.js:5447:40)
+    at CallExpression.bind (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)
+    at CallExpression.bind (file:///c:/Users/DHANUSRI%20M/Desktop/smt/smart-virtual-learning/frontend/node_modules/rollup/dist/es/shared/node-entry.js:12179:15)[39m
