@@ -1,21 +1,12 @@
-import axios from 'axios';
-
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
+import axios from 'axios'
 const api = axios.create({
-  baseURL: `${API_URL}/api`, // adjust in prod to your URL
-});
-
-// Request interceptor to add token
-api.interceptors.request.use(
-  (config) => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.token) {
-      config.headers.Authorization = `Bearer ${user.token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-export default api;
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  withCredentials: true
+})
+// Add JWT token to every request
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token')
+  if (token) config.headers.Authorization = `Bearer ${token}`
+  return config
+})
+export default api
